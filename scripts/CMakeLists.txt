@@ -99,10 +99,16 @@ if (DO_PYTHON_BINDINGS)
     endif()
 
     if(NOT WIN32)
+      if(CYGWIN)
+        set_target_properties(bindings_python PROPERTIES
+            OUTPUT_NAME _openbabel
+            PREFIX "" )
+      else()
         set_target_properties(bindings_python PROPERTIES
             OUTPUT_NAME _openbabel
             PREFIX ""
             SUFFIX .so )
+      endif()
       if( "${PYTHON_INSTDIR}" STREQUAL "" )
         execute_process(
           COMMAND
