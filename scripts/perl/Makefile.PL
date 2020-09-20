@@ -15,6 +15,9 @@ if (-e "$cmakebindir/lib/libopenbabel.so" || -e "$cmakebindir/lib/libopenbabel.d
 elsif (-e "$cmakebindir/lib64/libopenbabel.so") {
   check_lib_or_exit( lib => 'openbabel' , libpath => "$cmakebindir/lib64");
 }
+elsif (-e "$cmakebindir/src/libopenbabel.dll.a") {
+  check_lib_or_exit( lib => 'openbabel' , libpath => "$cmakebindir/src");
+}
 else {
   check_lib_or_exit( lib => 'openbabel' , libpath => @ENV{"LD_LIBRARY_PATH"});
 }
@@ -24,6 +27,8 @@ $ldfrom = "\$(OBJECT) -L$cmakebindir/lib -lopenbabel -lz"
     if (-r "$cmakebindir/lib/libopenbabel.dylib") and (-s _) and (-B _);
 $ldfrom = "\$(OBJECT) -L$cmakebindir/lib -lopenbabel -lz"
     if (-r "$cmakebindir/lib/libopenbabel.so") and (-s _) and (-B _);
+$ldfrom = "\$(OBJECT) -L$cmakebindir/src -lopenbabel"
+    if (-r "$cmakebindir/src/libopenbabel.dll.a") and (-s _) and (-B _);
 $ldfrom = "\$(OBJECT) -L$cmakebindir/lib64 -lopenbabel"
     if (-r "$cmakebindir/lib64/libopenbabel.so") and (-s _) and (-B _);
 
