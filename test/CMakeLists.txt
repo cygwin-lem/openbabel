@@ -222,7 +222,7 @@ install(TARGETS roundtrip
 # The following tests should work okay in MinGW, it's just that the calling
 # script needs some work. On Cygwin, there's some weird DLL problems when
 # calling from Python.
-if(NOT MINGW AND NOT CYGWIN)
+if(NOT MINGW)
   include(UsePythonTest)
   if(PYTHON_EXECUTABLE)
     set(pytests
@@ -240,7 +240,7 @@ if(NOT MINGW AND NOT CYGWIN)
       )
     endforeach(pytest ${pytests})
   endif(PYTHON_EXECUTABLE)
-endif(NOT MINGW AND NOT CYGWIN)
+endif(NOT MINGW)
 
 ###############################
 # Tests using Python bindings #
