@@ -7,5 +7,7 @@ aaaaaaaa ICON "babel2.ico"
 
 // this icon is used with wxFrame::SetIcon()
 sample ICON "babel2.ico"
+#ifdef __WXMSW__
 #include "wx/msw/wx.rc"
+#endif
 
