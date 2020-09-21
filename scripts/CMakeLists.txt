@@ -275,7 +275,11 @@ endif (R_BINDINGS)
 if (DO_R_BINDINGS)
 
 
+  if (CYGWIN)
+    include_directories(/usr/lib/R/include )
+  else ()
     include_directories(/usr/share/R/include )
+  endif ()
     if (RUN_SWIG)
 		 add_custom_command(OUTPUT ${openbabel_SOURCE_DIR}/scripts/R/openbabel-R.cpp
 			 COMMAND ${CMAKE_COMMAND} -E make_directory ${openbabel_BINARY_DIR}/scripts/R
