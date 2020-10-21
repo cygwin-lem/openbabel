@@ -443,9 +443,16 @@ if (DO_RUBY_BINDINGS)
       target_link_libraries(bindings_ruby ${RUBY_LIBRARY} ${BABEL_LIBRARY})
     endif()
 
+  if(CYGWIN)
+    set_target_properties(bindings_ruby PROPERTIES
+        OUTPUT_NAME openbabel
+        PREFIX ""
+        SUFFIX .so )
+  else()
     set_target_properties(bindings_ruby PROPERTIES
         OUTPUT_NAME openbabel
         PREFIX "" )
+  endif()
 
     if(NOT BINDINGS_ONLY)
       add_dependencies(bindings_ruby openbabel)
